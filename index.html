@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="jquery-3.7.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    
+   <style>
+
+body {
+	font-family: sans-serif;
+	margin: 0;
+}
+
+h1 {
+  color: #fff;
+  font-size: 36px;
+  font-weight: normal;
+  text-align: center;
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+  margin-top: 200px;
+}
+
+.wrapper {
+	background: #e435e4;
+	background: -moz-linear-gradient(top,  #e435e4 0%, #ac0ea9 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e435e4), color-stop(100%,#ac0ea9));
+	background: -webkit-linear-gradient(top,  #e435e4 0%,#ac0ea9 100%);
+	background: -o-linear-gradient(top,  #e435e4 0%,#ac0ea9 100%);
+	background: -ms-linear-gradient(top,  #e435e4 0%,#ac0ea9 100%);
+	background: linear-gradient(to bottom,  #e435e4 0%,#ac0ea9 100%);
+	/* filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3741d0', endColorstr='#332180',GradientType=0 ); */
+	height:100vh;
+	padding-top: 12px;
+	position: relative;
+	@media (min-width: 600px) {
+		padding-top: 24px;
+	}
+}
+.btn-wrap {
+	display: block;
+	margin: 2em auto;
+	transition: all 0.75s ease; 
+  position: relative;
+	height: 100px;
+	width: 100px;
+	&:before {
+		content: '';
+		border-radius: 20%;
+		position: absolute;
+		top: -10px;
+		left: -10px;
+		z-index: 2;
+		width: 120px;
+		height: 50px;
+		transition: all 0.75s ease; 
+	}
+	&:after {
+		position: absolute;
+		background: #d000e2;
+		width: 140px;
+		height: 50px;
+		z-index: 1;
+		content: '';
+		left: -20px;
+		top: -20px;
+		border-radius: 20%;
+		border-bottom: 3px solid #8a1695;
+		box-shadow: 10px 10px 10px rgba(10, 10, 10, 0.15);
+		transition: all 0.75s ease; 
+	}
+	@media (min-width: 600px) {
+		left: 25%;
+    margin: auto;
+		margin-top: -50px;
+		position: absolute;
+		top: 50%;
+	}
+}
+.tricky {
+	left: 60%;
+	z-index: 50;
+	&:after {
+		background-color: #8a1695;
+		border-bottom-color: #8a1695;
+	}
+	.btn {
+		color: #fff;
+		&:hover {
+			border-bottom: 3px solid #8a1695;
+		}
+		span {      
+			text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.5), 1px 1px 0px rgba(255,100,100,0.5);
+        &:before {
+          content: 'No';
+        }
+		}
+	}
+	&.active {
+		height: 50px;
+		width: 50px;
+		span {
+			font-size: 14px;
+        &:before {
+          content: 'Shh';
+        }
+		}
+		&:before {
+			/* box-shadow: inset 0 5px 10px rgba(0, 0, 0, 0.15); */
+			width: 60px;
+			height: 60px;
+			left: -5px;
+			top: -5px;
+		}
+		&:after {
+			/* box-shadow: 0px 2px 1px 1px rgba(0, 0, 0, 0.15); */
+			left: -10px;
+			top: -10px;
+			width: 70px;
+			height: 70px;
+		}
+	}
+}
+
+.btn {
+	/* background: #ffcc00; */
+
+	/* border-bottom: 5px solid #ffb300; */
+	color: white;
+	display: block;
+	font-weight: bold;
+	position: absolute;
+	text-align: center;
+	text-decoration: none;  
+    width: 100%;
+	transition: all 0.1s ease; 
+	z-index: 10;
+
+	span {
+		font-size: 21px;
+		line-height: 1;
+		text-shadow: 1px 1px 0 rgba(255,255,255,0.6);
+		text-transform: uppercase;
+		transition: all 0.25s ease; 
+		@include vertical-align;
+	}
+}
+
+.giphy-embed{
+    position:absolute;
+    right: 700px;
+}
+
+   </style>
+    <title>Date</title>
+</head>
+<body>
+
+
+    <div class="wrapper">
+
+        <h1>Do you wanna go out with me?</h1>
+
+        <iframe src="https://giphy.com/embed/Ri98Ht4Q9hczOeHC1E" width="200" height="200" frameBorder="0" class="giphy-embed"  allowFullScreen></iframe>
+      
+        <div class="btn-wrap static">
+          <a href="complete.html" class="btn" title="Yes">
+            <span>Yes</span>
+          </a>
+        </div>
+      
+        <div class="btn-wrap tricky">
+          <a href="javascript:void(0)" class="btn" title="No">
+            <span></span>
+          </a>
+        </div>
+      
+      </div>
+    
+
+
+    <script>
+
+$(function(){
+	    $(".tricky").on({
+	        mouseover:function(){
+	            $(this).css({
+	                left:(Math.random()*90)+"%",
+	                top:(Math.random()*90)+"%",
+	            });
+	        }
+	    });
+	    $(".btn-wrap").hover(function() {
+	       	$(this).toggleClass('active');
+	    });
+	});
+
+	$('.tricky').bind('touchstart', function(){
+	    $(this).css({
+            left:(Math.random()*60)+"%",
+            top:(Math.random()*60)+"%"
+        });
+	})
+
+
+    </script>
+</body>
+</html>
